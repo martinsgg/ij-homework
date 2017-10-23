@@ -31,15 +31,20 @@ public class RestTest {
     public ExpectedException thrown = ExpectedException.none();
     
     @Test
-    public void testCustomerCretion() throws Exception {
+    public void testCustomerCreation() throws Exception {
         this.mockMvc.perform(post("/Customer")
-                .content("{\"name\":\"Janis\",\"surname\":null,\"email\":\"test@test.lv\",\"password\":\"550055\",\"personal_id\":\"123456-12345\"}")
+                .content("{\"name\":\"Janis\",\"surname\":null,\"email\":\"test@testo.lv\",\"password\":\"550055\",\"personal_id\":\"123456-12345\"}")
                 .contentType(contentType))
                 .andExpect(status().isOk()); 
     }
     
     @Test
     public void testSameEmailCreation() throws Exception {
+    	this.mockMvc.perform(post("/Customer")
+                .content("{\"name\":\"Janis\",\"surname\":null,\"email\":\"test@test.lv\",\"password\":\"550055\",\"personal_id\":\"123456-12345\"}")
+                .contentType(contentType))
+                .andExpect(status().isOk()); 
+    	
     	thrown.expect(NestedServletException.class);
     	
 		this.mockMvc.perform(post("/register")

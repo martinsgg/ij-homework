@@ -31,9 +31,6 @@ public class DebtCollectionCase {
 	
 	@Column(name="paid")
 	private boolean paid = false;
-	
-	@Column(name="active")
-	private boolean active = true;
 
 	public Long getCase_id() {
 		return case_id;
@@ -71,16 +68,11 @@ public class DebtCollectionCase {
 		return paid;
 	}
 
+	/**
+	 * If payment day is due ant paid is false, customer has not paid. If true payment has been made.
+     */
 	public void setPaid(boolean paid) {
 		this.paid = paid;
-	}
-
-	public boolean getActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
 	}
 
 }

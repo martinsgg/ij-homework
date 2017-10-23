@@ -1,5 +1,6 @@
 package daos;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -45,7 +46,8 @@ public class DebtCollectionCaseDAOImpl implements DebtCollectionCaseDAO {
 	@Override
 	public List<DebtCollectionCase> getUnpaidCustomersCases(Customer customer) {
 		Session session = this.sessionFactory.openSession();
-		return session.createQuery("from DebtCollectionCase where customer_id=:customer_id and paid=0 and active=1")
-					.setParameter("customer_id", customer.getCustomer_id()).list();
+		return session.createQuery("from DebtCollectionCase where customer_id=:customer_id and paid=0 and due_date>:current_date")
+					.setParameter("customer_id", customer.getCustomer_id())
+					.setDate("current_date", new Date(System.currentTimeMillis())).list();
 	}
 }

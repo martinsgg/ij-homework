@@ -30,7 +30,7 @@ public class CustomerTest {
 		Customer cust = new Customer();
 		cust.setName("Test");
 		cust.setSurname("Test");
-		cust.setEmail("test@test.lv");
+		cust.setEmail("test@testp.lv");
 		cust.setPassword("123");
 		customerDAO.save(cust);
     }
@@ -38,7 +38,12 @@ public class CustomerTest {
 	@Test public void addDebtCollectionCaseForCustomer() {
 		Customer cust = customerDAO.getCustomer(1);
 		if(cust == null){
-			testCustomerCreation();
+			cust = new Customer();
+			cust.setName("TestN");
+			cust.setSurname("TestN");
+			cust.setEmail("test@testn.lv");
+			cust.setPassword("123nn");
+			customerDAO.save(cust);
 			cust = customerDAO.getCustomer(1);
 		}
 		DebtCollectionCase dcc = new DebtCollectionCase();
